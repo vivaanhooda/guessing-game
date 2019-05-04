@@ -1,18 +1,18 @@
 import System.Random
 
-loop n = do
+loop n tries = do
     putStrLn "please guess the number"
     l <- getLine
     let i = read l :: Int
     if i == n
-    then putStrLn "You GUESSED it congratulations!!!!"
+    then putStrLn $ "You GUESSED it in " ++ show tries ++ " tries. Congratulations!!!!"
     else  if i > n
           then do
                  putStrLn "Too High"
-                 loop n
+                 loop n (tries+1)
           else do
                 putStrLn  "Too Low"
-                loop n
+                loop n (tries+1)
 
 main=do
 
@@ -20,7 +20,7 @@ main=do
 
         g <- randomRIO (1,16)
        -- print (g::Int)
-        loop g
+        loop g 1
 
 
 
